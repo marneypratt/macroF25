@@ -231,6 +231,8 @@ First, use what we have learned in this class to choose a graph type that will e
 # put the object name of your plot in the blank below
 # you can change the colors if you want to
 # but make sure they are colorblind friendly (see link above this code chunk)
+# make sure to use the same colors in the same order 
+# for all graphs splitting by location
 location.plot <- ggpubr::ggpar(___, palette = c("#EE7733", "#0077BB"))
 location.plot
 
@@ -397,6 +399,8 @@ Find the code you need to graph your data by looking in the "graphing" folder wi
 
 
 #put the object name of your plot in the blank below
+#make sure to use the same colors in the same order 
+#for all graphs splitting by location
 strongest.cor.plot <- ggpubr::ggpar(___, 
                               palette = c("#EE7733", "#0077BB"))
 strongest.cor.plot 
@@ -471,7 +475,7 @@ Don't forget to "render" your .qmd file when you are done.
 
     -   First try to render to PDF using **format: typst** in the YAML at the top of this document
 
-    -   If typst isn't working for you, then you can render to HTML (see "renderToHTML.qmd" for the code to render to HTML)
+    -   If `typst` isn't working for you, then you can render to HTML (see "renderToHTML.qmd" for the code to render to HTML)
 
         -   After rendering, if the HTML file didn't already open in your browser, then click on the name of the file in the Files window and select "View in Web Browser"
 
