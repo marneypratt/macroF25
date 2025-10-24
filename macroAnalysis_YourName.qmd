@@ -8,11 +8,11 @@ format: typst
 
 # Getting Setup
 
-Keep all of your analysis in this same .qmd file and keep all the associated files in the project folder. Make sure the project name is showing in the upper right of the RStudio window.
+Keep all of your analysis in this same .qmd file (copy script templates into code chunks in this file) and keep all the associated files in the project folder. Make sure the project name is showing in the upper right of the RStudio window.
 
 ## Load packages
 
-As always, we will begin by loading all the necessary packages. Run the code chunk below. (note: if you are working on your own desktop version of R and RStudio, make sure that all the packages below have been installed before you run the code to load the packages)
+As always, we will begin by loading all the necessary packages. Run the code chunk below. (note: if you are working on your own desktop version of R and RStudio, make sure that all the packages below have been installed before you run the code to load the packages. If you can't get a package to install, them use the Smith Server)
 
 ```{r}
 #| label: setup
@@ -80,7 +80,7 @@ master.taxa_metadata <- read_csv("data/master.taxa_variable_metadata.csv",
 
 To look at the structure of a data frame that was just imported, click on the object name (=name of the data frame) in the Global Environment as a shortcut to using the View() function, and click on the blue arrow next to the data frame in the Global Environment to see all the variable names and types.
 
-A metadata file for each data table was also imported that gives some brief information about the variables. A text file called (with .txt file extension) for each data table is also included in the "data" folder that has a more full description including how to cite the data, what each variable represents, and how measurements were made using what tools.
+A metadata file for each data table was also imported that gives some brief information about the variables. A text file (with .txt file extension) for each data table is also included in the "data" folder that has a more full description including how to cite the data, what each variable represents, and how measurements were made using what tools.
 
 ## Data Wrangling
 
@@ -88,7 +88,7 @@ Below is the code you need to prepare or "wrangle" your data to make calculation
 
 Note, once you have completed this code chunk, you should have a new data frame called my.df that has ONE value per sampleID. You will then use this new data frame going forward.
 
-The only blank you need to replace below is the name of your taxonomic group. See the [Common Macroinvertebrates in the Mill River](https://docs.google.com/spreadsheets/d/1Nx2lG_hmVjnSYoVrqcsj-edlAhr-9bVB4BsktAN_gMI/edit?usp=sharing) link and copy the name in the "taxon_group" column for your group. If the name doesn't match exactly, the code will not work. (If you forget which group you are working on, look at the Lab 7 - Macro ID lab entry in your lab notebook).
+The only blank you need to replace below is the name of your taxonomic group. See the [Common Macroinvertebrates in the Mill River](https://docs.google.com/spreadsheets/d/1Nx2lG_hmVjnSYoVrqcsj-edlAhr-9bVB4BsktAN_gMI/edit?usp=sharing) link and copy the name in the "taxon_group" column for your group. If the name doesn't match exactly, the code will not work. (If you forget which group you are working on, look at the Macro ID lab entry in your lab notebook).
 
 ```{r}
 #| label: data wrangling
@@ -133,7 +133,7 @@ my.df <- left_join(macro.taxa, env) |>
 
 ```
 
-Note that the way we have "wrangled" this dataset is that each row now equals the values from the same microhabitat sampled on the same day (But note that not all environmental variables were measured at the level of the microhabitat). The density value is the number of all the macroinvertebrates from the indicated taxonomic group collected from a particular microhabitat on a particular day divided by the total benthic area sampled - so the units are number per meter squared.
+Note that the way we have "wrangled" this dataset is that each row now contains the values from the same microhabitat sampled on the same day (But note that not all environmental variables were measured at the level of the microhabitat). The density value is the number of all the macroinvertebrates from the indicated taxonomic group collected from a particular microhabitat on a particular day divided by the total benthic area sampled - so the units are number per meter squared.
 
 The way the data are wrangled above only includes when the taxon was present, it does not include all the zeros. We could include the zeros as well, but for most of the data we have here this would cause such a substantial skew (called a zero inflated model) that it becomes difficult to use some of the tools we are using below to analyze the data. So just make sure when you are interpreting the results, that you make it clear that the density values are for when the taxonomic group was present and does not include the zeros.
 
@@ -145,13 +145,13 @@ How does the presence of Paradise Pond in the Mill River impact your taxonomic g
 
 Let's first get the full set of descriptive statistics for the density of your macroinvertebrate taxonomic group summarized for upstream and downstream of Paradise Pond (tip: use density and location as your variables).
 
-You can refer back to the dataviz Quarto document (or your rendered PDF version) to help remind you how to round the values properly. But also note that for the density variable, rounding to the whole number (the ones place, using digits = 0) is fine in this case even if the SD tells you to round to a higher number.
+You can refer back to the dataviz Quarto document (or your rendered PDF version) to help remind you how to round the values properly. But also note that for the density variable, rounding to the whole number (the ones place, using digits = 0) is usually fine in this case even if the SD tells you to round to a higher number.
 
 ```{r}
 #| label: rounded descriptive stats
 
 #set the number of digits to round (this blank should be just a number)
-round.digit <- 0
+round.digit <- ___
 
 # replace the blank below with a continuous variable of interest
 cont.var <- "___" 
@@ -228,7 +228,7 @@ First, use what we have learned in this class to choose a graph type that will e
 
 
 
-# put the object name of your plot in the blank below
+# put the object name of your plot above in the blank below
 # you can change the colors if you want to
 # but make sure they are colorblind friendly (see link above this code chunk)
 # make sure to use the same colors in the same order 
@@ -334,7 +334,7 @@ dev.off()
 
 ```
 
-Here we used a few functions from the `corrplot` package to do multiple correlation tests (here we are using Pearson's correlation coefficient, *r*). The output from the `corrplot` function shows each variable compared to each of the other variables. We also used `corrplot::cor.mtest` to determine which correlation coefficients were significant different from zero. The tests where there was not a significant correlation (p\>0.05) are left blank (not shown). The value shown in black within each square is Pearson's correlation coefficient (*r*). The colored ellipses in each square represent the direction of the relationship (blue and tilted to the right is a positive relationship, red and tilted to the left is a negative relationship) and the intensity of the color and shape of the ellipse indicate the strength of the correlation (darker colors and skinnier ellipses are stronger correlations).
+Here we used a few functions from the `corrplot` package to do multiple correlation tests (here we are using Pearson's correlation coefficient, *r*). The output from the `corrplot` function shows each variable compared to each of the other variables. We also used `corrplot::cor.mtest` to determine which correlation coefficients were significant different from zero. The tests where there was not a significant correlation ("p>0.05") are left blank (not shown). The value shown in black within each square is Pearson's correlation coefficient (*r*). The colored ellipses in each square represent the direction of the relationship (blue and tilted to the right is a positive relationship, red and tilted to the left is a negative relationship) and the intensity of the color and shape of the ellipse indicate the strength of the correlation (darker colors and skinnier ellipses are stronger correlations).
 
 Note that the code above will save a PNG file of this plot in your results folder. This PNG file may be easier to look at and zoom into rather than looking at the direct output.
 
