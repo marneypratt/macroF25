@@ -10,6 +10,14 @@ format: typst
 
 Keep all of your analysis in this same .qmd file (copy script templates into code chunks in this file) and keep all the associated files in the project folder. Make sure the project name is showing in the upper right of the RStudio window.
 
+Before you start doing anything else, use the "Save as" function to make a copy of this file with your name replacing the YourName (example: macroanalysis_SophiaSmith.qmd).
+
+Update the YAML above (lines 1-7) :
+
+-   **title**: replace YourName in the title with your name (no spaces). This will ensure that you name your PDF file that you make later correctly
+-   **author**: put your name here with spaces
+-   **date**: update with today's date
+
 ## Load packages
 
 As always, we will begin by loading all the necessary packages. Run the code chunk below. (note: if you are working on your own desktop version of R and RStudio, make sure that all the packages below have been installed before you run the code to load the packages. If you can't get a package to install, them use the Smith Server)
@@ -210,7 +218,7 @@ Now that we have some information from exploring the density values for your tax
 
 ### Visualize the impact of location
 
-First, use what we have learned in this class to choose a graph type that will effectively show how the density of your taxonomic group is impacted by Paradise Pond (comparing the location upstream and downstream of the pond). The graphing code templates can be found in script_templates and the graphing subfolder
+First, use what we have learned in this class to choose a graph type that will effectively show how the density of your taxonomic group is impacted by Paradise Pond (comparing the location upstream and downstream of the pond). The graphing code templates can be found in **script_templates** and the **graphing** subfolder
 
 **Note**: You can use [Adobe Color](https://color.adobe.com/create/color-accessibility) to find colorblind safe colors (make sure to select "Color Blind Safe" under tools)
 
@@ -252,9 +260,9 @@ Make sure to insert your graph into your results slides and write a figure legen
 
 ### Calculate the effect size of location
 
-Next, calculate the appropriate effect size.
+Next, calculate the appropriate effect size. Go to the **script_templates folder** and then select the **inference** subfolder.
 
-You can refer back to the dataviz Quarto document (or your rendered PDF version) to help remind you about how to choose the correct effect size test.
+You can refer back to the dataviz Quarto document (or your rendered PDF version) to help remind you about how to choose the correct effect size test. Copy all the code from the appropriate script template and paste it below.
 
 ```{r}
 #| label: effect size   
@@ -334,7 +342,7 @@ dev.off()
 
 ```
 
-Here we used a few functions from the `corrplot` package to do multiple correlation tests (here we are using Pearson's correlation coefficient, *r*). The output from the `corrplot` function shows each variable compared to each of the other variables. We also used `corrplot::cor.mtest` to determine which correlation coefficients were significant different from zero. The tests where there was not a significant correlation ("p>0.05") are left blank (not shown). The value shown in black within each square is Pearson's correlation coefficient (*r*). The colored ellipses in each square represent the direction of the relationship (blue and tilted to the right is a positive relationship, red and tilted to the left is a negative relationship) and the intensity of the color and shape of the ellipse indicate the strength of the correlation (darker colors and skinnier ellipses are stronger correlations).
+Here we used a few functions from the `corrplot` package to do multiple correlation tests (here we are using Pearson's correlation coefficient, *r*). The output from the `corrplot` function shows each variable compared to each of the other variables. We also used `corrplot::cor.mtest` to determine which correlation coefficients were significant different from zero. The tests where there was not a significant correlation ("p\>0.05") are left blank (not shown). The value shown in black within each square is Pearson's correlation coefficient (*r*). The colored ellipses in each square represent the direction of the relationship (blue and tilted to the right is a positive relationship, red and tilted to the left is a negative relationship) and the intensity of the color and shape of the ellipse indicate the strength of the correlation (darker colors and skinnier ellipses are stronger correlations).
 
 Note that the code above will save a PNG file of this plot in your results folder. This PNG file may be easier to look at and zoom into rather than looking at the direct output.
 
