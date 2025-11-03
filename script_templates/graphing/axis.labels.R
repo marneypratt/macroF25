@@ -18,12 +18,12 @@ xlab("Water Temperature ("~degree~"C)") +
   
 xlab("Dissolved Oxygen (mg/L)") +
   
-xlab(~paste0("PAR"," ", "(" ,mu, "mol m"^-2,"s"^-1, ")")) +
+xlab(~paste("PAR"," ", "(" ,mu, "mol m"^-2,"s"^-1, ")")) +
   
 xlab("Flow Rate (m/s)") +
 
 xlab("Turbidity (NTU)") +
 
-xlab(~paste0("Conductivity"," ", "(" ,mu, "S cm"^-1, ")")) +
+  xlab(~paste("Conductivity"," ", "(" ,mu, "S cm"^-1, ")")) +
   
 xlab(bquote("Sediment Released ("~m^3*")")) +
